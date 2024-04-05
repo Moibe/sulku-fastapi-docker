@@ -2,7 +2,7 @@ import gradio as gr
 import avaimet
 
 def authenticate(username, password):
-    usuarios = [("usuario1", "contraseña1"), ("usuario2", "contraseña2")]
+    usuarios = [("usuario1", "contraseña1"), ("usuario2", "contrasena2")]
     for u, p in usuarios:
         if username == u and password == p:
             return True
