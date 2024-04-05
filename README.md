@@ -1,6 +1,6 @@
 ---
 title: Sulku
-emoji: 📈
+emoji: 🌊
 colorFrom: blue
 colorTo: red
 sdk: gradio
