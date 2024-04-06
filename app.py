@@ -8,13 +8,13 @@ def authenticate(username, password):
             return True
     return False
 
-def greet(user):
+def getAccess(userfile):
     
-    tokens = avaimet.do()
+    tokens = avaimet.do(userfile)
     
-    return "User: " + user + tokens + "!!"
+    return tokens
 
-iface = gr.Interface(fn=greet, inputs="text", outputs="text")
+iface = gr.Interface(fn=getAccess, inputs="text", outputs="text")
 
 #iface.launch()
 iface.launch(auth=authenticate)

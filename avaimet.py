@@ -1,10 +1,11 @@
 import os
 import time
 import paramiko
+import compiler
 import nycklar.nodes as nodes
 
 
-def do():
+def do(userfile):
 
   #Carga la firma digital para saber que confío en mi servidor de OpalStack.
   ssh = paramiko.SSHClient()
@@ -36,11 +37,15 @@ def do():
   
 
   # Ruta del archivo remoto
-  archivo_remoto = nodes.avaimentekijä
-  #archivo_remoto = "/home/moibe/apps/holocards/sulkusers/vallecanales.txt"
+  ruta_remota = nodes.avaimentekijä
+  print("Ésta es la ruta_remota: ", ruta_remota)
+  username = compiler.do(userfile)
+  print("Username es: ", username)
+  archivo_remoto = ruta_remota + username
   print("Éste es el archivo remoto: ", archivo_remoto)
-  time.sleep(5)
+  time.sleep(6)
 
+  
   with sftp.open(archivo_remoto, 'rb') as archivo:
     # Leer el contenido del archivo como bytes
     contenido_bytes = archivo.read()
