@@ -1,15 +1,22 @@
-from cryptography.fernet import Fernet
+import time 
 import nycklar.nodes as nodes
+from cryptography.fernet import Fernet
 
-def do(userfile):
+def do(desencriptable):
 
-    key = Fernet.generate_key()
+    print("El tipo de desencriptable desde adentro es es del tipo: ", type(desencriptable))
+    time.sleep(8)
+
+    #key = Fernet.generate_key()
+    key = nodes.key
+    print("Esto es la KEY: ", key)
+    time.sleep(1)
     fernet = Fernet(key)
+    print("Esto es Fernet: ", fernet)
+    
+    string_desencriptado = fernet.decrypt(desencriptable).decode("utf-8")
 
-    string_original = "oldball182ls"
-    string_encriptado = fernet.encrypt(string_original.encode("utf-8"))
-    string_desencriptado = fernet.decrypt(userfile).decode("utf-8")
-
-    print(f"String original: {string_original}")
-    print(f"String encriptado: {string_encriptado}")
     print(f"String desencriptado: {string_desencriptado}")
+    time.sleep(5)
+
+    return string_desencriptado

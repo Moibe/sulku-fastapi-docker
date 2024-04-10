@@ -1,20 +1,22 @@
-import gradio as gr
+import time
 import avaimet
-
-def authenticate(username, password):
-    usuarios = [("usuario1", "contrasena1"), ("usuario2", "contrasena2")]
-    for u, p in usuarios:
-        if username == u and password == p:
-            return True
-    return False
+import gradio as gr
 
 def getAccess(userfile):
+        
+    sshListo, sftpListo = avaimet.conecta()
+
+    #Obtiene la caja donde está guardados los tokens.
+    caja = avaimet.obtenCaja(userfile)
+
+    tokens = avaimet.obtenTokens(sftpListo, caja)
+
+    resultado_final = avaimet.aplicaReglas(sftpListo, caja, tokens)
+
+    avaimet.cierraConexion(sshListo, sftpListo)
     
-    tokens = avaimet.do(userfile)
-    
-    return tokens
+    return resultado_final
 
 iface = gr.Interface(fn=getAccess, inputs="text", outputs="text")
 
-#iface.launch()
-iface.launch(auth=authenticate)
+iface.launch()

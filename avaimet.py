@@ -4,69 +4,81 @@ import paramiko
 import compiler
 import nycklar.nodes as nodes
 
+def conecta():
 
-def do(userfile):
-
-  #Carga la firma digital para saber que confío en mi servidor de OpalStack.
+  #Digital Signature.
   ssh = paramiko.SSHClient()
   ssh.load_host_keys("nycklar/itrst")
 
   #Ahora obtendremos nuestra secret key para poder entrar a ese servidor.
-  # Obtiene la ruta del directorio actual
   project_dir = os.getcwd()
-  print("Esto es projectdir: ", project_dir)
-  path_completo = os.path.join(project_dir, "nycklar")
-
-  print("Éste es el path_completo: ", path_completo)
-  
-  # Crea la ruta completa al archivo `go`
-  key_filename = os.path.join(path_completo, "go")
-
-  #Imprimo el path del id_rsa
-  print("Esto es key_filename: ", key_filename)
-
-  #Conexión hacia el servidor con tus credenciales.
-  #Al tener una key no requieres el password.
+  key_filename = os.path.join(project_dir, "nycklar", "go")
+   
   ssh.connect(nodes.realm, username=nodes.master, key_filename=key_filename)
-  print(ssh)
-  time.sleep(3)
-  #Una vez que tenemos la conexión ssh, creamos un sftp (SSH File Transfer Protocol)
   sftp = ssh.open_sftp()
-  print(sftp)
-  time.sleep(3)
-  
 
+  return ssh, sftp
+
+def obtenCaja(userfile):
+
+  
+ 
   # Ruta del archivo remoto
   ruta_remota = nodes.avaimentekijä
-  print("Ésta es la ruta_remota: ", ruta_remota)
-  username = compiler.do(userfile)
-  print("Username es: ", username)
-  archivo_remoto = ruta_remota + username
-  print("Éste es el archivo remoto: ", archivo_remoto)
-  time.sleep(6)
-
+  print("Encoding...")
+  userfile_codificado = userfile.encode("utf-8")
+  print(f"El userfile sin la b, se decodifica y queda: {userfile_codificado} y es del tipo {type(userfile_codificado)} ...")
+  time.sleep(3)
   
-  with sftp.open(archivo_remoto, 'rb') as archivo:
-    # Leer el contenido del archivo como bytes
-    contenido_bytes = archivo.read()
+ 
+  
+  # print("convirtiendo a bytes")
+  # bytes_userfile = bytes(userfile)
+  # print(f"El userfile se convirtio via bytes en userfile_codificado es: {bytes_userfile} y es del tipo {type(bytes_userfile)} ...")
+  # time.sleep(15)
+  
 
-    # Decodificar los bytes a Unicode usando la codificación UTF-8
-    contenido_unicode = contenido_bytes.decode('utf-8')
+ 
 
-    # Agregar el texto "- Revisado." al string
-    contenido_final = int(contenido_unicode) - 1
+  print("Estoy afuera, enviando al compiler.")
+  username = compiler.do(userfile_codificado)
+  print("Username es: ", username)
+  caja = ruta_remota + username + ".txt"
+  print("Éste es el archivo remoto: ", caja)
+  
+  return caja
 
-    contenido_final = str(contenido_final)
+def obtenTokens(sftp, caja): 
+   
+    with sftp.open(caja, 'rb') as archivo:
+      # Leer el contenido del archivo como bytes
+      contenido_bytes = archivo.read()
 
-    # Imprimir el contenido
-    print(contenido_final)
+      # Decodificar los bytes a Unicode usando la codificación UTF-8
+      contenido_unicode = contenido_bytes.decode('utf-8')
 
-    # Abrir el archivo remoto en modo escritura
-  with sftp.open(archivo_remoto, 'w') as archivo:
+      return contenido_unicode
+    
+def aplicaReglas(sftp, caja, tokens):
+
+  # print(f"Si entré a aplicaReglas y los argumentos que traigo son  ")
+
+  # Agregar el texto "- Revisado." al string
+  contenido_final = int(tokens) - 1
+
+  contenido_final = str(contenido_final)
+
+  # Imprimir el contenido
+  print(contenido_final)
+
+  #Actualiza el nuevo valor en el servidor en modo escritura.
+  with sftp.open(caja, 'w') as archivo:
     # Escribir el contenido final en el archivo
     archivo.write(contenido_final)
 
+  return contenido_final
+
+def cierraConexion(ssh, sftp ):
+
   sftp.close()
   ssh.close()
-
-  return contenido_final

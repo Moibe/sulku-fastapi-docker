@@ -1,4 +1,5 @@
 master = "moibe"
 realm = "opal2.opalstack.com"
 avaimentekijä = "/home/moibe/apps/holocards/sulkusers/"
-user=b'gAAAAABmEH_v7ibmmMR7KrnZWoNthxQGpEtaQXmcNzzP9kG_h1z_pKuvOz9mkYXZbmbUYxcKTuYndONeRpBEXgsin_2rDDcv0w=='
+key=b'kiSHsm7Y0hbyNdcFIav6OMT39gi29nIzT-rCrr0Tyc8='
+user=b'gAAAAABmEZA4SLBC2YczouOrjIEi9WNCNGOIvyUcqBUnzxNsftXTdy54KaX9x8mAjFkABSI6FJrdZDQKk_5lpJOgJoMChxlniw=='
