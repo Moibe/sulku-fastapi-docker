@@ -21,8 +21,6 @@ def conecta():
 
 def obtenCaja(userfile):
 
-  
- 
   # Ruta del archivo remoto
   ruta_remota = nodes.avaimentekijä
   print("Encoding...")
@@ -30,16 +28,11 @@ def obtenCaja(userfile):
   print(f"El userfile sin la b, se decodifica y queda: {userfile_codificado} y es del tipo {type(userfile_codificado)} ...")
   time.sleep(3)
   
- 
-  
   # print("convirtiendo a bytes")
   # bytes_userfile = bytes(userfile)
   # print(f"El userfile se convirtio via bytes en userfile_codificado es: {bytes_userfile} y es del tipo {type(bytes_userfile)} ...")
   # time.sleep(15)
   
-
- 
-
   print("Estoy afuera, enviando al compiler.")
   username = compiler.do(userfile_codificado)
   print("Username es: ", username)
@@ -53,19 +46,17 @@ def obtenTokens(sftp, caja):
     with sftp.open(caja, 'rb') as archivo:
       # Leer el contenido del archivo como bytes
       contenido_bytes = archivo.read()
-
       # Decodificar los bytes a Unicode usando la codificación UTF-8
-      contenido_unicode = contenido_bytes.decode('utf-8')
+      tokens = contenido_bytes.decode('utf-8')
 
-      return contenido_unicode
+      return tokens
     
 def aplicaReglas(sftp, caja, tokens):
 
-  # print(f"Si entré a aplicaReglas y los argumentos que traigo son  ")
+  #Aplica reglas de cobro de tokens.
 
   # Agregar el texto "- Revisado." al string
   contenido_final = int(tokens) - 1
-
   contenido_final = str(contenido_final)
 
   # Imprimir el contenido
