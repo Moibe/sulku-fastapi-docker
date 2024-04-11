@@ -23,6 +23,15 @@ def print():
 
     return "Hola Mundo"
 
-iface = gr.Interface(fn=getAccess, inputs="text", outputs="text", api_name="entrar")
+with gr.Blocks() as demo:
+    with gr.Row():
+        with gr.Column():
+            text_input = gr.Textbox()
+            enviar_btn = gr.Button(value="Submit")
+        with gr.Column():
+            text_output = gr.Textbox()
 
-iface.launch()
+    enviar_btn.click(fn=getAccess, inputs="text", outputs="text", api_name="entrar")
+
+
+demo.launch()
