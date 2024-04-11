@@ -17,7 +17,7 @@ def getAccess(userfile):
     
     return resultado_final
 
-def print():
+def print(sulkukey):
 
     print("Hola mundo")
 
