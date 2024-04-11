@@ -32,7 +32,7 @@ with gr.Blocks() as demo:
         with gr.Column():
             text_output = gr.Textbox()
 
-    access_btn.click(fn=getAccess, inputs=text_input, outputs=text_output, api_name="entrar")
+    access_btn.click(fn=getAccess, inputs=text_input, outputs=text_output, api_name="getTokens")
     debit_btn.click(fn=ask, inputs=text_input, outputs=text_output, api_name="print")
 
 demo.launch()
