@@ -17,11 +17,11 @@ def getAccess(userfile):
     
     return resultado_final
 
-def print(sulkukey):
+def ask(sulkukey):
 
     print("Hola mundo")
 
-    return "Hola Mundo"
+    return 1
 
 with gr.Blocks() as demo:
     with gr.Row():
@@ -33,6 +33,6 @@ with gr.Blocks() as demo:
             text_output = gr.Textbox()
 
     access_btn.click(fn=getAccess, inputs=text_input, outputs=text_output, api_name="entrar")
-    debit_btn.click(fn=print, inputs=text_input, outputs=text_output, api_name="print")
+    debit_btn.click(fn=ask, inputs=text_input, outputs=text_output, api_name="print")
 
 demo.launch()
