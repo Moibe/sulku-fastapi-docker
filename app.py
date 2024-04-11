@@ -15,7 +15,7 @@ def getAccess(userfile):
     
     return tokens
 
-def debitTokens(userfile, cuantos):
+def debitTokens(userfile, work):
 
     #Genera conexión inicial.
     sshListo, sftpListo = avaimet.conecta()
@@ -24,7 +24,7 @@ def debitTokens(userfile, cuantos):
     #Obtiene los tokens que hay en esa caja.
     tokens = avaimet.obtenTokens(sftpListo, caja)
     #Aplica las reglas de ésta app para debitar lo correspondiente.
-    resultado_debitado = avaimet.restaToken(sftpListo, caja, tokens, cuantos)
+    resultado_debitado = avaimet.restaToken(sftpListo, caja, tokens, work)
     #Cierra la conexión.  
     avaimet.cierraConexion(sshListo, sftpListo)
 

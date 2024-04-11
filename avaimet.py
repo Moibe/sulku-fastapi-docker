@@ -48,9 +48,18 @@ def obtenTokens(sftp, caja):
 
       return tokens
     
-def restaToken(sftp, caja, tokens, cuantos):
+def restaToken(sftp, caja, tokens, work):
+
+  #Standard cost.
+  cuantos = 1
 
   #Aplica reglas de cobro de tokens.
+  if work == 'picswap':
+    cuantos = 1
+    print(f"Work: {work}, cuantos: {cuantos}")
+    time.sleep(3)
+  else:
+    cuantos = 1
 
   # Agregar el texto "- Revisado." al string
   contenido_final = int(tokens) - cuantos
