@@ -27,12 +27,7 @@ def obtenCaja(userfile):
   userfile_codificado = userfile.encode("utf-8")
   print(f"El userfile sin la b, se decodifica y queda: {userfile_codificado} y es del tipo {type(userfile_codificado)} ...")
   time.sleep(3)
-  
-  # print("convirtiendo a bytes")
-  # bytes_userfile = bytes(userfile)
-  # print(f"El userfile se convirtio via bytes en userfile_codificado es: {bytes_userfile} y es del tipo {type(bytes_userfile)} ...")
-  # time.sleep(15)
-  
+    
   print("Estoy afuera, enviando al compiler.")
   username = compiler.do(userfile_codificado)
   print("Username es: ", username)

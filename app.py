@@ -9,17 +9,18 @@ def getAccess(userfile):
     #Obtiene la caja donde está guardados los tokens.
     caja = avaimet.obtenCaja(userfile)
 
+    #Obtiene los tokens que hay en esa caja.
     tokens = avaimet.obtenTokens(sftpListo, caja)
-
-    resultado_final = avaimet.aplicaReglas(sftpListo, caja, tokens)
-
+    
     avaimet.cierraConexion(sshListo, sftpListo)
     
-    return resultado_final
+    return tokens
 
 def ask(sulkukey):
 
     print("Hola mundo")
+    #resultado_final = avaimet.aplicaReglas(sftpListo, caja, tokens)
+
 
     return 1
 
