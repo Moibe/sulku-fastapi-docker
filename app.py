@@ -35,13 +35,15 @@ with gr.Blocks() as demo:
     with gr.Row():
         with gr.Column():
             text_input = gr.Textbox()
-            number_input = gr.Number()
+            work_catalogue = gr.Dropdown(
+            ["picswap", "dog", "bird"], label="Catalogo", info="Will add more works later!"
+        ),
             access_btn = gr.Button(value="Submit")
             debit_btn = gr.Button(value="Debit")
         with gr.Column():
             text_output = gr.Textbox()
 
     access_btn.click(fn=getAccess, inputs=text_input, outputs=text_output, api_name="getTokens")
-    debit_btn.click(fn=debitTokens, inputs=[text_input, number_input], outputs=text_output, api_name="debitTokens")
+    debit_btn.click(fn=debitTokens, inputs=[text_input, work_catalogue], outputs=text_output, api_name="debitTokens")
 
 demo.launch()

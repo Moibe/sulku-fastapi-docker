@@ -51,7 +51,7 @@ def obtenTokens(sftp, caja):
 def restaToken(sftp, caja, tokens, work):
 
   #Standard cost.
-  cuantos = 1
+  cuantos = 2
 
   #Aplica reglas de cobro de tokens.
   if work == 'picswap':
