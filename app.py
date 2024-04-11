@@ -27,10 +27,12 @@ with gr.Blocks() as demo:
     with gr.Row():
         with gr.Column():
             text_input = gr.Textbox()
-            enviar_btn = gr.Button(value="Submit")
+            access_btn = gr.Button(value="Submit")
+            debit_btn = gr.Button(value="Submit")
         with gr.Column():
             text_output = gr.Textbox()
 
-    enviar_btn.click(fn=getAccess, inputs=text_input, outputs=text_output, api_name="entrar")
+    access_btn.click(fn=getAccess, inputs=text_input, outputs=text_output, api_name="entrar")
+    debit_btn.click(fn=print, inputs=text_input, outputs=text_output, api_name="print")
 
 demo.launch()
