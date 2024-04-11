@@ -42,6 +42,6 @@ with gr.Blocks() as demo:
             text_output = gr.Textbox()
 
     access_btn.click(fn=getAccess, inputs=text_input, outputs=text_output, api_name="getTokens")
-    debit_btn.click(fn=debitToken, inputs=number_input, outputs=text_output, api_name="debitTokens")
+    debit_btn.click(fn=debitToken, inputs=[text_input, number_input], outputs=text_output, api_name="debitTokens")
 
 demo.launch()
