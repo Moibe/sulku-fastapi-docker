@@ -16,13 +16,21 @@ def getAccess(userfile):
     
     return tokens
 
-def ask(sulkukey):
+def debitToken(userfile):
 
-    print("Hola mundo")
-    #resultado_final = avaimet.aplicaReglas(sftpListo, caja, tokens)
+    sshListo, sftpListo = avaimet.conecta()
 
+    #Obtiene la caja donde está guardados los tokens.
+    caja = avaimet.obtenCaja(userfile)
 
-    return 1
+    #Obtiene los tokens que hay en esa caja.
+    tokens = avaimet.obtenTokens(sftpListo, caja)
+
+    resultado_debitado = avaimet.aplicaReglas(sftpListo, caja, tokens)
+
+    avaimet.cierraConexion(sshListo, sftpListo)
+
+    return resultado_debitado
 
 with gr.Blocks() as demo:
     with gr.Row():
@@ -34,6 +42,6 @@ with gr.Blocks() as demo:
             text_output = gr.Textbox()
 
     access_btn.click(fn=getAccess, inputs=text_input, outputs=text_output, api_name="getTokens")
-    debit_btn.click(fn=ask, inputs=text_input, outputs=text_output, api_name="print")
+    debit_btn.click(fn=debitToken, inputs=text_input, outputs=text_output, api_name="print")
 
 demo.launch()
