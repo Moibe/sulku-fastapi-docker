@@ -31,7 +31,6 @@ with gr.Blocks() as demo:
         with gr.Column():
             text_output = gr.Textbox()
 
-    enviar_btn.click(fn=getAccess, inputs="text", outputs="text", api_name="entrar")
-
+    enviar_btn.click(fn=getAccess, inputs=text_input, outputs=text_output, api_name="entrar")
 
 demo.launch()
