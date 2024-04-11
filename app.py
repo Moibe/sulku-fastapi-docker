@@ -17,6 +17,11 @@ def getAccess(userfile):
 
 def debitTokens(userfile, work):
 
+    print("Llegué a debitTokens...")
+    time.sleep(8)
+
+    print(f"Y work recibido es : {work} y es del tipo: {type(work)} ...")
+
     #Genera conexión inicial.
     sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados los tokens.
@@ -37,7 +42,7 @@ with gr.Blocks() as demo:
             text_input = gr.Textbox()
             work_catalogue = gr.Dropdown(
             ["picswap", "dog", "bird"], label="Catalogo", info="Will add more works later!"
-        ),
+        )
             access_btn = gr.Button(value="Submit")
             debit_btn = gr.Button(value="Debit")
         with gr.Column():

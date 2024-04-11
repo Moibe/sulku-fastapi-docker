@@ -59,7 +59,8 @@ def restaToken(sftp, caja, tokens, work):
     print(f"Work: {work}, cuantos: {cuantos}")
     time.sleep(3)
   else:
-    cuantos = 1
+    print("El trabajo no existe...")
+
 
   # Agregar el texto "- Revisado." al string
   contenido_final = int(tokens) - cuantos
