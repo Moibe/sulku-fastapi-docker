@@ -28,7 +28,7 @@ with gr.Blocks() as demo:
         with gr.Column():
             text_input = gr.Textbox()
             access_btn = gr.Button(value="Submit")
-            debit_btn = gr.Button(value="Submit")
+            debit_btn = gr.Button(value="Debit")
         with gr.Column():
             text_output = gr.Textbox()
 
