@@ -15,7 +15,7 @@ def getAccess(userfile):
     
     return tokens
 
-def debitToken(userfile):
+def debitToken(userfile, cuantos):
 
     #Genera conexión inicial.
     sshListo, sftpListo = avaimet.conecta()
@@ -24,7 +24,7 @@ def debitToken(userfile):
     #Obtiene los tokens que hay en esa caja.
     tokens = avaimet.obtenTokens(sftpListo, caja)
     #Aplica las reglas de ésta app para debitar lo correspondiente.
-    resultado_debitado = avaimet.aplicaReglas(sftpListo, caja, tokens)
+    resultado_debitado = avaimet.restaToken(sftpListo, caja, tokens, cuantos)
     #Cierra la conexión.  
     avaimet.cierraConexion(sshListo, sftpListo)
 
@@ -35,12 +35,13 @@ with gr.Blocks() as demo:
     with gr.Row():
         with gr.Column():
             text_input = gr.Textbox()
+            number_input = gr.Number()
             access_btn = gr.Button(value="Submit")
             debit_btn = gr.Button(value="Debit")
         with gr.Column():
             text_output = gr.Textbox()
 
     access_btn.click(fn=getAccess, inputs=text_input, outputs=text_output, api_name="getTokens")
-    debit_btn.click(fn=debitToken, inputs=text_input, outputs=text_output, api_name="debitTokens")
+    debit_btn.click(fn=debitToken, inputs=number_input, outputs=text_output, api_name="debitTokens")
 
 demo.launch()

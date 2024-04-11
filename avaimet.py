@@ -46,12 +46,12 @@ def obtenTokens(sftp, caja):
 
       return tokens
     
-def aplicaReglas(sftp, caja, tokens):
+def restaToken(sftp, caja, tokens, cuantos):
 
   #Aplica reglas de cobro de tokens.
 
   # Agregar el texto "- Revisado." al string
-  contenido_final = int(tokens) - 1
+  contenido_final = int(tokens) - cuantos
   contenido_final = str(contenido_final)
 
   # Imprimir el contenido
