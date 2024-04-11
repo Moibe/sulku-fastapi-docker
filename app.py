@@ -17,6 +17,12 @@ def getAccess(userfile):
     
     return resultado_final
 
+def print():
+
+    print("Hola mundo")
+
+    return "Hola Mundo"
+
 iface = gr.Interface(fn=getAccess, inputs="text", outputs="text")
 
 iface.launch()
