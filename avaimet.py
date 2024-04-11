@@ -21,6 +21,8 @@ def conecta():
 
 def obtenCaja(userfile):
 
+  print("Esto es userfile de obtenCaja: ", userfile)
+  time.sleep(9)
   # Ruta del archivo remoto
   ruta_remota = nodes.avaimentekijä
   print("Encoding...")
