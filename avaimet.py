@@ -46,6 +46,8 @@ def obtenTokens(sftp, caja):
       # Decodificar los bytes a Unicode usando la codificación UTF-8
       tokens = contenido_bytes.decode('utf-8')
 
+      tokens = int(tokens)
+
       print("Tokens son....: ", tokens)
       print("Y su type182 es: ", type(tokens))
       time.sleep(8)
