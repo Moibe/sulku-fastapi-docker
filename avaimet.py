@@ -53,11 +53,10 @@ def restaToken(sftp, caja, tokens, work):
   #Aplica reglas de cobro de tokens.
   if work == 'picswap':
     cuantos = 1
-    print(f"Work: {work}, cuantos: {cuantos}")
+    print(f"Work: {work}, tokens cost: {cuantos}")
     time.sleep(1)
   else:
-    print("El trabajo no existe...")
-
+    print("The work specified doesn't exists.")
 
   # Agregar el texto "- Revisado." al string
   contenido_final = int(tokens) - cuantos
