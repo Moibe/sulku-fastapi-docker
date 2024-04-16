@@ -21,21 +21,16 @@ def conecta():
 
 def obtenCaja(userfile):
 
-  print("Esto es userfile de obtenCaja: ", userfile)
-  time.sleep(9)
   # Ruta del archivo remoto
   ruta_remota = nodes.avaimentekijä
   print("Encoding...")
   userfile_codificado = userfile.encode("utf-8")
-  print(f"El userfile sin la b, se decodifica y queda: {userfile_codificado} y es del tipo {type(userfile_codificado)} ...")
-  time.sleep(3)
-    
-  print("Estoy afuera, enviando al compiler.")
+      
+  print("Sending to compiler.")
   username = compiler.do(userfile_codificado)
-  print("Username es: ", username)
+  print("Username is: ", username)
   caja = ruta_remota + username + ".txt"
-  print("Éste es el archivo remoto: ", caja)
-  
+    
   return caja
 
 def obtenTokens(sftp, caja): 
@@ -48,10 +43,6 @@ def obtenTokens(sftp, caja):
 
       tokens = int(tokens)
 
-      print("Tokens son....: ", tokens)
-      print("Y su type182 es: ", type(tokens))
-      time.sleep(8)
-
       return tokens
     
 def restaToken(sftp, caja, tokens, work):
@@ -63,7 +54,7 @@ def restaToken(sftp, caja, tokens, work):
   if work == 'picswap':
     cuantos = 1
     print(f"Work: {work}, cuantos: {cuantos}")
-    time.sleep(3)
+    time.sleep(1)
   else:
     print("El trabajo no existe...")
 

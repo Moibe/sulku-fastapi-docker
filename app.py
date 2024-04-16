@@ -17,10 +17,7 @@ def getAccess(userfile):
 
 def debitTokens(userfile, work):
 
-    print("Llegué a debitTokens...")
-    time.sleep(8)
-
-    print(f"Y work recibido es : {work} y es del tipo: {type(work)} ...")
+    print(f"Task received : {work}, type: {type(work)} ...")
 
     #Genera conexión inicial.
     sshListo, sftpListo = avaimet.conecta()
