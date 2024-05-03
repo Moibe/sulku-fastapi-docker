@@ -70,6 +70,7 @@ def restaToken(sftp, caja, tokens, work):
     # Escribir el contenido final en el archivo
     archivo.write(contenido_final)
 
+  contenido_final = int(contenido_final)
   return contenido_final
 
 def cierraConexion(ssh, sftp ):
