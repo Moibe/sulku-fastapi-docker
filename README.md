@@ -1,13 +1,10 @@
 ---
-title: Sulku
-emoji: 🌊
+title: Sulku-Docker
+emoji: 🌊🐳
 colorFrom: blue
 colorTo: red
-sdk: gradio
-sdk_version: 4.25.0
+sdk: docker
 app_file: aplicacion.py
-pinned: false
-license: openrail
 ---
 
 Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
