@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import aplicacion 
+import funciones
 
 app = FastAPI()
 
@@ -8,12 +8,12 @@ def hello():
 
     return {"Status":"Deployed"}
 
-@app.get("/getTokens")
-def getTokens(): 
+@app.get("/getTokens/{userfile}")
+def getTokens(userfile: str):
+    tokens = funciones.getAccess(userfile)
+    return tokens
 
-    return {"Status":"Getting Tokens..."}
-
-@app.get("/debitTokens")
-def debitTokens(): 
-
-    return {"Status":"Debitting tokens..."}
+@app.get("/debitTokens/{userfile}/{work}")
+def debitTokens(userfile: str, work: str):
+    tokens = funciones.debitTokens(userfile,work) 
+    return tokens
