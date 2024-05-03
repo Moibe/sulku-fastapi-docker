@@ -5,7 +5,7 @@ colorFrom: blue
 colorTo: red
 sdk: gradio
 sdk_version: 4.25.0
-app_file: app.py
+app_file: aplicacion.py
 pinned: false
 license: openrail
 ---
