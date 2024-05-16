@@ -45,6 +45,35 @@ def obtenTokens(sftp, caja):
 
       return tokens
     
+def autoriza(tokens, work):
+
+  print(tokens)
+
+  #Standard cost.
+  costo_tarea = 2
+
+  #Aplica reglas de cobro de tokens.
+  #Posteriormente las equivalencias de tardeas y costos vendrán de una tabla aparte.
+  #Por ahora se definen via éste IF: 
+  if work == 'picswap':
+    costo_tarea = 1
+    print(f"Work: {work}, tokens cost: {costo_tarea}")
+    time.sleep(1)
+  else:
+    print("The work specified doesn't exists.")
+
+  #Ahora evaluaremos si se tiene el suficiente crédito como para ejecutar la tarea.
+  if tokens >= costo_tarea:
+    print("Tarea autorizada...")
+    result = True
+  else:
+     print("Tarea no autorizada, no tienes suficientes tokens...")
+     result = False
+  
+  return result
+
+
+    
 def restaToken(sftp, caja, tokens, work):
 
   #Standard cost.
