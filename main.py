@@ -38,7 +38,7 @@ def getTokens(tokens: int, work: str):
 def debitTokens(tokens: int, work: str = "picswap"):
     autorizacion = funciones.authorize(tokens,work) 
     print("Tipo de resultado:", type(autorizacion))
-    return tokens
+    return autorizacion
 
 
 ## DEBIT TOKENS ##
