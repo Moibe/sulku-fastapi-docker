@@ -14,22 +14,28 @@ def getTokens(userfile):
     
     return tokens
 
-def authorize(userfile, work):
+def authorize(tokens, work):
 
     print(f"Task received : {work}, type: {type(work)} ...")
 
+    ##Ésta sección se reutilizará si en lugar de pasar el parámetro token, se pasa el parámetro userfile.
+    #Actualmente no lo pedimos porque es el developer el que pone la cantidad de tokens que el usuario tiene para...
+    #...evitar otra vuelta al server, por mayor certeza o seguridad se puede hacer esa ida. 
+    #En un futuro incluso se pueden hacer los dos tipos de autorización en dos endpoints distintos. O en un solo endpoint con...
+    #...las dos opciones. 
+
     #Genera conexión inicial.
-    sshListo, sftpListo = avaimet.conecta()
+    #sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados los tokens.
-    caja = avaimet.obtenCaja(userfile)
+    #caja = avaimet.obtenCaja(userfile)
     #Obtiene los tokens que hay en esa caja.
-    tokens = avaimet.obtenTokens(sftpListo, caja)
+    #tokens = avaimet.obtenTokens(sftpListo, caja)
     
     #True si autoriza o false si no autoriza.
     result = avaimet.autoriza(tokens, work)
     
     #Cierra la conexión.  
-    avaimet.cierraConexion(sshListo, sftpListo)
+    #avaimet.cierraConexion(sshListo, sftpListo)
 
     return result
 
