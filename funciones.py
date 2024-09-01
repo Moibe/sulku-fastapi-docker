@@ -1,6 +1,18 @@
 import time
 import avaimet
 
+def getData(userfile):
+
+    #Genera conexión inicial.       
+    sshListo, sftpListo = avaimet.conecta()
+    #Obtiene la caja donde está guardados los tokens.
+    data = avaimet.obtenData()
+    
+    #Cierra la conexión.    
+    avaimet.cierraConexion(sshListo, sftpListo)
+    
+    return data
+
 def getTokens(userfile):
 
     #Genera conexión inicial.       

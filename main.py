@@ -8,6 +8,24 @@ def start():
 
     return {"Status":"Deployed"}
 
+## GET DATA ##
+
+#Vía Path
+@app.get("/getData/")
+def getTokens():
+    data = funciones.getData()
+    print("Tipo de resultado:", type(data))
+    return data
+
+#Vía Query 
+#Quizá no es necesaria vía QUery porque no pide parámetros.
+@app.get("/getDataQ/")
+def getTokens():
+    data = funciones.getData()
+    print("Tipo de resultado:", type(data))
+    return data
+
+
 ## GET TOKENS ##
 
 #Vía Path

@@ -19,10 +19,19 @@ def conecta():
 
   return ssh, sftp
 
+def obtenData():
+  # Ruta del archivo remoto
+  ruta_remota = nodes.data
+
+  data = ruta_remota + "sulku-data.py"
+    
+  return data
+
 def obtenCaja(userfile):
 
   # Ruta del archivo remoto
   ruta_remota = nodes.avaimentekijä
+  #avaimentekijä es el repositorio de llaves sulkuusers.
   print("Encoding...")
   userfile_codificado = userfile.encode("utf-8")
       
