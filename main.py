@@ -12,7 +12,7 @@ def start():
 
 #Vía Path
 @app.get("/getData/")
-def getTokens():
+def getData():
     data = funciones.getData()
     print("Tipo de resultado:", type(data))
     return data
@@ -20,7 +20,7 @@ def getTokens():
 #Vía Query 
 #Quizá no es necesaria vía QUery porque no pide parámetros.
 @app.get("/getDataQ/")
-def getTokens():
+def getData():
     data = funciones.getData()
     print("Tipo de resultado:", type(data))
     return data
@@ -46,14 +46,14 @@ def getTokens(userfile: str = "gAAAAABmEZA4SLBC2YczouOrjIEi9WNCNGOIvyUcqBUnzxNsf
 
 #Vía Parameters
 @app.get("/authorize/{tokens}/{work}")
-def getTokens(tokens: int, work: str):
+def authorize(tokens: int, work: str):
     autorizacion = funciones.authorize(tokens, work)
     print("Tipo de resultado:", type(autorizacion))
     return autorizacion
 
 #Vía Query
 @app.get("/authorizeQ/")
-def debitTokens(tokens: int, work: str = "picswap"):
+def authorize(tokens: int, work: str = "picswap"):
     autorizacion = funciones.authorize(tokens,work) 
     print("Tipo de resultado:", type(autorizacion))
     return autorizacion
