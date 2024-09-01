@@ -1,7 +1,7 @@
 import time
 import avaimet
 
-def getData(userfile):
+def getData():
 
     #Genera conexión inicial.       
     sshListo, sftpListo = avaimet.conecta()

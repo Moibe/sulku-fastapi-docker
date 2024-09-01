@@ -13,12 +13,13 @@ def start():
 #Vía Path
 @app.get("/getData/")
 def getData():
-    data = funciones.getData()
+    #data = funciones.getData()
+    data = "Hola Mundo"
     print("Tipo de resultado:", type(data))
     return data
 
 #Vía Query 
-#Quizá no es necesaria vía QUery porque no pide parámetros.
+#Quizá no es necesaria vía Query porque no pide parámetros.
 @app.get("/getDataQ/")
 def getData():
     data = funciones.getData()
