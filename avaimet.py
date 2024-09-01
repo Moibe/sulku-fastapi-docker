@@ -34,6 +34,7 @@ def obtenData(sftp, dir_data):
       contenido = archivo.read()
 
       print("Imprimiendo contenido: ", contenido)
+      print("182 El tipo de contenido obtenido es: ", type(contenido))
       
       return contenido
 
