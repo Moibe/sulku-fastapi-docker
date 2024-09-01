@@ -19,13 +19,23 @@ def conecta():
 
   return ssh, sftp
 
-def obtenData():
+def obtenDirData():
   # Ruta del archivo remoto
   ruta_remota = nodes.data
 
-  data = ruta_remota + "sulku-data.py"
-    
-  return data
+  dir_data = ruta_remota + "data.py"
+
+  return dir_data
+
+def obtenData(sftp, dir_data): 
+   
+    with sftp.open(dir_data, 'rb') as archivo:
+      # Leer el contenido del archivo como bytes
+      contenido = archivo.read()
+
+      print("Imprimiendo contenido: ", contenido)
+      
+      return contenido
 
 def obtenCaja(userfile):
 

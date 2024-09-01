@@ -13,8 +13,8 @@ def start():
 #Vía Path
 @app.get("/getData/")
 def getData():
-    #data = funciones.getData()
-    data = "Hola Mundo"
+    data = funciones.getData()
+    
     print("Tipo de resultado:", type(data))
     return data
 
