@@ -27,7 +27,6 @@ def getData():
 
 
 ## GET TOKENS ##
-
 #Vía Path
 @app.get("/getTokens/{userfile}")
 def getTokens(userfile: str):
@@ -43,7 +42,6 @@ def getTokens(userfile: str = "gAAAAABmEZA4SLBC2YczouOrjIEi9WNCNGOIvyUcqBUnzxNsf
     return tokens
 
 ## AUTHORIZE WORK ##
-
 #Vía Parameters
 @app.get("/authorize/{tokens}/{work}")
 def authorize(tokens: int, work: str):
@@ -60,7 +58,6 @@ def authorize(tokens: int, work: str = "picswap"):
 
 
 ## DEBIT TOKENS ##
-
 #Vía Parámeters
 @app.get("/debitTokens/{userfile}/{work}")
 def debitTokens(userfile: str, work: str):
@@ -74,3 +71,18 @@ def debitTokens(userfile: str, work: str = "picswap"):
     tokens = funciones.debitTokens(userfile,work) 
     print("Tipo de resultado:", type(tokens))
     return tokens
+
+## GET USER FLAG ##
+#Vía Parámeters
+@app.get("/getUserFlag/{userfile}")
+def debitTokens(userfile: str):
+    flag = funciones.getUserFlag(userfile) 
+    print("Tipo de resultado:", type(flag))
+    return flag
+
+#Vía Query
+@app.get("/getUserFlag/")
+def debitTokens(userfile: str):
+    flag = funciones.gwtUserFlag(userfile) 
+    print("Tipo de resultado:", type(flag))
+    return flag
