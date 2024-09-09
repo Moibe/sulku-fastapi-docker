@@ -32,10 +32,10 @@ def obtenData(sftp, dir_data):
     with sftp.open(dir_data, 'rb') as archivo:
       # Leer el contenido del archivo como bytes
       contenido = archivo.read()
-
       print("Imprimiendo contenido: ", contenido)
-      print("182 El tipo de contenido obtenido es: ", type(contenido))
-      
+      print("El tipo de contenido obtenido es: ", type(contenido))
+      print("Esperando 32 segundos, porque analizaremos como es data y como extraer un renglón.")
+      time.sleep(32)
       return contenido
 
 def obtenCaja(userfile):

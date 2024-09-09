@@ -7,7 +7,7 @@ def getData():
     sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados los tokens.
     dir_data = avaimet.obtenDirData()
-
+    #Obtiene el json con los datos.
     data = avaimet.obtenData(sftpListo, dir_data)    
     #Cierra la conexión.    
     avaimet.cierraConexion(sshListo, sftpListo)
