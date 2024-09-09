@@ -78,7 +78,6 @@ def autoriza(tokens, work):
   if work == 'picswap':
     costo_tarea = 1
     print(f"Work: {work}, tokens cost: {costo_tarea}")
-    time.sleep(1)
   else:
     print("The work specified doesn't exists.")
     return False
@@ -104,7 +103,6 @@ def restaToken(sftp, caja, tokens, work):
   if work == 'picswap':
     cuantos = 1
     print(f"Work: {work}, tokens cost: {cuantos}")
-    time.sleep(1)
   else:
     print("The work specified doesn't exists.")
 
