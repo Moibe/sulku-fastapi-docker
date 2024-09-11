@@ -1,2 +1,2 @@
 flags = "flags.py"
-data = "daya.py"
+data = "data.py"
