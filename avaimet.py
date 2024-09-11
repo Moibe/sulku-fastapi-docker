@@ -1,8 +1,10 @@
 import os
-import time
+import tools
 import paramiko
 import compiler
 import nycklar.nodes as nodes
+
+#AVAIMET CONTIENE LAS FUNCIONES QUE INTERACTUAN CON EL SERVIDOR REMOTO.
 
 def conecta():
 
@@ -19,34 +21,41 @@ def conecta():
 
   return ssh, sftp
 
-def obtenDirData():
-  # Ruta del archivo remoto
+def obtenDireccionArchivo(archivo):
+  #Archivo puede ser data.py o flags.py
+
+  # Ruta del archivo remoto (también general para todo lo que vive en holocards).
   ruta_remota = nodes.data
+  path_archivo = ruta_remota + archivo
 
-  dir_data = ruta_remota + "data.py"
+  return path_archivo
 
-  return dir_data
 
-def obtenData(sftp, dir_data): 
-   
+def obtenContenidoArchivo(sftp, dir_data): 
+    
     with sftp.open(dir_data, 'rb') as archivo:
       # Leer el contenido del archivo como bytes
       contenido = archivo.read()
       print("Imprimiendo contenido: ", contenido)
       print("El tipo de contenido obtenido es: ", type(contenido))
-      return contenido
+
+      #Decodificar pq viene codificado del server (codificado en bytes) no encriptado.      
+      texto = contenido.decode('utf-8')
+      print(texto)
+      print("El tipo de contenido obtenido es: ", type(texto))
+      
+      return texto
 
 def obtenCaja(userfile):
 
+  #Codifica y descomprime el string para obtener un user.
+  username = tools.decompileUser(userfile)
+
   # Ruta del archivo remoto
   ruta_remota = nodes.avaimentekijä
-  #avaimentekijä es el repositorio de llaves sulkuusers.
-  print("Encoding...")
-  userfile_codificado = userfile.encode("utf-8")
-      
-  print("Sending to compiler.")
-  username = compiler.do(userfile_codificado)
-  print("Username is: ", username)
+  #avaimentekijä es el repositorio de llaves sulkuusers.  
+
+  #FUTURE: Separar en dos funciones la que compila y decompila el nombre, y la ue obtiene la caja.
   caja = ruta_remota + username + ".txt"
     
   return caja
@@ -89,8 +98,6 @@ def autoriza(tokens, work):
      result = False
   
   return result
-
-
     
 def restaToken(sftp, caja, tokens, work):
 

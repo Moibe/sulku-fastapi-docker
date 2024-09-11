@@ -1,14 +1,18 @@
-import time
+import ast
+import tools
+import globales
 import avaimet
 
-def getData():
+#Aquí van las funciones principales, las que interactuan con el servidor están en el módulo avaimet.
 
+def getData():
     #Genera conexión inicial.       
     sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados los tokens.
-    dir_data = avaimet.obtenDirData()
+    #Future: Ese data.py después puede viri en un globales.
+    dir_data = avaimet.obtenDireccionArchivo(globales.data)
     #Obtiene el json con los datos.
-    data = avaimet.obtenData(sftpListo, dir_data)    
+    data = avaimet.obtenContenidoArchivo(sftpListo, dir_data)    
     #Cierra la conexión.    
     avaimet.cierraConexion(sshListo, sftpListo)
     
@@ -69,9 +73,57 @@ def debitTokens(userfile, work):
 
     return resultado_debitado
 
-def getUserFlag(userfile):
-    print("Getting user flag...")
 
-    flag = userfile
+
+def getUserFlag(userfile):
+
+    usuario = tools.decompileUser(userfile)
+    
+    #Genera conexión inicial (general para cualquier función.)  
+    sshListo, sftpListo = avaimet.conecta()
+    #Obtiene la caja donde está guardados las flags.
+    #Future: Que flags.py venga de globales.
+    dir_data = avaimet.obtenDireccionArchivo(globales.flags)
+    #Obtiene el json con los datos.
+    data = avaimet.obtenContenidoArchivo(sftpListo, dir_data)
+    
+    # Convertir el string a una lista de tuplas utilizando ast.literal_eval()
+    lista_tuplas = ast.literal_eval(data)
+
+    tupla_encontrada = None  # Inicializamos una variable para almacenar la tupla encontrada
+
+    for tupla in lista_tuplas:
+        if tupla[0] == usuario:
+            tupla_encontrada = tupla
+            break
+
+    if tupla_encontrada:
+        print("La tupla encontrada es:", tupla_encontrada)
+    else:
+        print("No se encontró ninguna tupla con el texto especificado.")
+
+    valor_en_1 = tupla_encontrada[1]
+    print("Revisar si es correcto que valor_en_1 sea: ", valor_en_1)
+    
+    #Cierra la conexión.    
+    avaimet.cierraConexion(sshListo, sftpListo)
+    #Future, ¿se puede acaso que se cierre el contenido y que haga la conversión al mismo tiempo?    
+    
+    return lista_tuplas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return flag
