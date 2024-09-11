@@ -68,3 +68,10 @@ def debitTokens(userfile, work):
     avaimet.cierraConexion(sshListo, sftpListo)
 
     return resultado_debitado
+
+def getUserFlag(userfile):
+    print("Getting user flag...")
+
+    flag = userfile
+
+    return flag
