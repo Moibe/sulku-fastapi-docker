@@ -1,9 +1,11 @@
 import ast
 import tools
-import globales
 import avaimet
+import globales
 
-#Aquí van las funciones principales, las que interactuan con el servidor están en el módulo avaimet.
+#Aquí van las funciones principales, las queson llamadas directo por la API.
+#Las que interactuan con el servidor están en el módulo avaimet.
+#Y las herramientas adicionales están en tools.
 
 def getData():
     #Genera conexión inicial.       
@@ -19,7 +21,6 @@ def getData():
     return data
 
 def getTokens(userfile):
-
     #Genera conexión inicial.       
     sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados los tokens.
@@ -89,8 +90,10 @@ def getUserFlag(userfile):
     
     # Convertir el string a una lista de tuplas utilizando ast.literal_eval()
     lista_tuplas = ast.literal_eval(data)
-
     tupla_encontrada = None  # Inicializamos una variable para almacenar la tupla encontrada
+
+    avaimet.cierraConexion(sshListo, sftpListo)
+    #Future, ¿se puede acaso que se cierre el contenido y que haga la conversión al mismo tiempo?    
 
     for tupla in lista_tuplas:
         if tupla[0] == usuario:
@@ -99,31 +102,8 @@ def getUserFlag(userfile):
 
     if tupla_encontrada:
         print("La tupla encontrada es:", tupla_encontrada)
+        flag = tupla_encontrada[1]
+        return flag
     else:
         print("No se encontró ninguna tupla con el texto especificado.")
-
-    valor_en_1 = tupla_encontrada[1]
-    print("Revisar si es correcto que valor_en_1 sea: ", valor_en_1)
-    
-    #Cierra la conexión.    
-    avaimet.cierraConexion(sshListo, sftpListo)
-    #Future, ¿se puede acaso que se cierre el contenido y que haga la conversión al mismo tiempo?    
-    
-    return lista_tuplas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    return flag
+        return "no user"
