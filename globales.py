@@ -1,2 +1,2 @@
-flags = "flags.py"
+flags = "novelty.py"
 data = "data.py"
