@@ -83,7 +83,6 @@ def getUserNovelty(userfile):
     #Genera conexión inicial (general para cualquier función.)  
     sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados las flags de novelty.
-    #Future: Que flags.py venga de globales. Ok.
     dir_data = avaimet.obtenDireccionArchivo(globales.novelty)
     #Obtiene el json con los datos.
     data = avaimet.obtenContenidoArchivo(sftpListo, dir_data)
