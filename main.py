@@ -76,15 +76,15 @@ def debitTokens(userfile: str, work: str = "picswap"):
 
 ## GET USER FLAG ##
 #Vía Parámeters
-@app.get("/getUserFlag/{userfile}")
+@app.get("/getUserNovelty/{userfile}")
 def getUserFlag(userfile: str):
-    flag = funciones.getUserFlag(userfile) 
-    print("Tipo de resultado:", type(flag))
-    return flag
+    novelty = funciones.getUserNovelty(userfile) 
+    print("Tipo de resultado:", type(novelty))
+    return novelty
 
 #Vía Query
 @app.get("/getUserFlag/")
-def getUserFlag(userfile: str):
-    flag = funciones.getUserFlag(userfile) 
-    print("Tipo de resultado:", type(flag))
-    return flag
+def getUserNovelty(userfile: str):
+    novelty = funciones.getUserNovelty(userfile) 
+    print("Tipo de resultado:", type(novelty))
+    return novelty
