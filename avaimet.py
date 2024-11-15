@@ -36,13 +36,13 @@ def obtenContenidoArchivo(sftp, dir_data):
     with sftp.open(dir_data, 'rb') as archivo:
       # Leer el contenido del archivo como bytes
       contenido = archivo.read()
-      print("Imprimiendo contenido: ", contenido)
-      print("El tipo de contenido obtenido es: ", type(contenido))
+      # print("Imprimiendo contenido: ", contenido)
+      # print("El tipo de contenido obtenido es: ", type(contenido))
 
       #Decodificar pq viene codificado del server (codificado en bytes) no encriptado.      
       texto = contenido.decode('utf-8')
-      print(texto)
-      print("El tipo de contenido obtenido es: ", type(texto))
+      # print(texto)
+      # print("El tipo de contenido obtenido es: ", type(texto))
       
       return texto
 
