@@ -3,20 +3,16 @@ import funciones
 
 app = FastAPI()
 
-#Future: Correct warnings in cryptography.
-
 @app.get("/")
 def start(): 
-
     return {"Status":"Deployed"}
 
 ## GET DATA ##
-
 #Vía Path
 @app.get("/getData/")
 def getData():
     data = funciones.getData()    
-    print("Tipo de resultado:", type(data))
+    #print("Tipo de resultado:", type(data))
     return data
 
 #Vía Query 

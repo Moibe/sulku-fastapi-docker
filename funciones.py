@@ -3,7 +3,7 @@ import tools
 import avaimet
 import globales
 
-#Aquí van las funciones principales, las queson llamadas directo por la API.
+#Aquí van las funciones principales, las que son llamadas directo por la API.
 #Las que interactuan con el servidor están en el módulo avaimet.
 #Y las herramientas adicionales están en tools.
 
@@ -11,7 +11,8 @@ def getData():
     #Genera conexión inicial.       
     sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados los tokens.
-    #Future: Ese data.py después puede viri en un globales.
+    
+    #globales.data es el archivo que queremos obtener.
     dir_data = avaimet.obtenDireccionArchivo(globales.data)
     #Obtiene el json con los datos.
     data = avaimet.obtenContenidoArchivo(sftpListo, dir_data)    
