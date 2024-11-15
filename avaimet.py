@@ -1,48 +1,60 @@
 import os
 import tools
 import paramiko
-import compiler
+#import compiler
 import nycklar.nodes as nodes
 
 #AVAIMET CONTIENE LAS FUNCIONES QUE INTERACTUAN CON EL SERVIDOR REMOTO.
 
 def conecta():
 
+  print("Estoy en aivamet.conecta")
   #Digital Signature.
   ssh = paramiko.SSHClient()
+  print("El paramiko ssh es:")
+  print(ssh)
+
   ssh.load_host_keys("nycklar/itrst")
+
+  print("Load host keys loadedas...")
 
   #Ahora obtendremos nuestra secret key para poder entrar a ese servidor.
   project_dir = os.getcwd()
+  
+  #Ruta de go.
   key_filename = os.path.join(project_dir, "nycklar", "go")
+
    
   ssh.connect(nodes.realm, username=nodes.master, key_filename=key_filename)
+
   sftp = ssh.open_sftp()
 
   return ssh, sftp
 
 def obtenDireccionArchivo(archivo):
-  #Archivo puede ser data.py o flags.py
+  #Archivo puede ser data.py o flagsnovelty.py
 
   # Ruta del archivo remoto (también general para todo lo que vive en holocards).
-  ruta_remota = nodes.data
+  ruta_remota = nodes.users_data
   path_archivo = ruta_remota + archivo
 
   return path_archivo
 
 
 def obtenContenidoArchivo(sftp, dir_data): 
-    
+    print("Estoy dentro de obtenContenido...")
+
     with sftp.open(dir_data, 'rb') as archivo:
       # Leer el contenido del archivo como bytes
+      print("Pude entrar al archivo...")
       contenido = archivo.read()
-      # print("Imprimiendo contenido: ", contenido)
-      # print("El tipo de contenido obtenido es: ", type(contenido))
+      print("Imprimiendo contenido: ", contenido)
+      print("El tipo de contenido obtenido es: ", type(contenido))
 
       #Decodificar pq viene codificado del server (codificado en bytes) no encriptado.      
       texto = contenido.decode('utf-8')
-      # print(texto)
-      # print("El tipo de contenido obtenido es: ", type(texto))
+      print(texto)
+      print("El tipo de contenido obtenido es: ", type(texto))
       
       return texto
 
@@ -55,7 +67,6 @@ def obtenCaja(userfile):
   ruta_remota = nodes.avaimentekijä
   #avaimentekijä es el repositorio de llaves sulkuusers.  
 
-  #FUTURE: Separar en dos funciones la que compila y decompila el nombre, y la ue obtiene la caja.
   caja = ruta_remota + username + ".txt"
     
   return caja

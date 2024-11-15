@@ -1,19 +1,25 @@
 import ast
+import time
 import tools
 import avaimet
 import globales
+import nycklar.nodes as nodes
 
 #Aquí van las funciones principales, las que son llamadas directo por la API.
 #Las que interactuan con el servidor están en el módulo avaimet.
 #Y las herramientas adicionales están en tools.
 
-def getData():
-    #Genera conexión inicial.       
+def getData(aplicacion):
+    #Genera conexión inicial.
+    print("Estoy en getData...")
+
     sshListo, sftpListo = avaimet.conecta()
-    #Obtiene la caja donde está guardados los tokens.
+        
+    #dir_data = avaimet.obtenDireccionArchivo() #Comenté éste pq me estaría ahorrando ésta función así:
+    dir_data = nodes.users_data + aplicacion + globales.data
+
+    print("Ésto es dir data...", dir_data)
     
-    #globales.data es el archivo que queremos obtener.
-    dir_data = avaimet.obtenDireccionArchivo(globales.data)
     #Obtiene el json con los datos.
     data = avaimet.obtenContenidoArchivo(sftpListo, dir_data)    
     #Cierra la conexión.    

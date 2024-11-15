@@ -1,2 +1,2 @@
-novelty = "novelty.py"
-data = "data.py"
+novelty = "/novelty.py"
+data = "/data.py"
