@@ -64,14 +64,14 @@ def authorize(tokens, work):
 
     return result
 
-def debitTokens(userfile, work):
+def debitTokens(userfile, work, env):
 
     print(f"Task received : {work}, type: {type(work)} ...")
 
     #Genera conexión inicial.
     sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados los tokens.
-    caja = avaimet.obtenCaja(userfile)
+    caja = avaimet.obtenCaja(userfile, env)
     #Obtiene los tokens que hay en esa caja.
     tokens = avaimet.obtenTokens(sftpListo, caja)
     #Aplica las reglas de ésta app para debitar lo correspondiente.

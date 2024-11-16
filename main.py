@@ -51,17 +51,15 @@ def authorize(tokens: int, work: str = "picswap"):
 
 ## DEBIT TOKENS ##
 #Vía Parámeters
-@app.get("/debitTokens/{userfile}/{work}")
-def debitTokens(userfile: str, work: str):
-    tokens = funciones.debitTokens(userfile,work) 
-    #print("Tipo de resultado:", type(tokens))
+@app.get("/debitTokens/{userfile}/{work}/{env}")
+def debitTokens(userfile: str, work: str, env: str):
+    tokens = funciones.debitTokens(userfile,work, env) 
     return tokens
 
 #Vía Query
 @app.get("/debitTokensQ/")
-def debitTokens(userfile: str, work: str = "picswap"):
-    tokens = funciones.debitTokens(userfile,work) 
-    #print("Tipo de resultado:", type(tokens))
+def debitTokens(userfile: str, work: str = "picswap", env: str = "dev"):
+    tokens = funciones.debitTokens(userfile,work, env) 
     return tokens
 
 ## GET USER Novelty ##
