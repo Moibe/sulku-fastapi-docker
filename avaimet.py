@@ -72,13 +72,12 @@ def obtenTokens(sftp, caja):
     
 def autoriza(tokens, work):
 
-  print(tokens)
-
+  #print(tokens)
   #Standard cost.
   costo_tarea = 2
 
   #Aplica reglas de cobro de tokens.
-  #Posteriormente las equivalencias de tardeas y costos vendrán de una tabla aparte.
+  #Posteriormente las equivalencias de tareas y costos vendrán de una tabla aparte.
   #Por ahora se definen via éste IF: 
   if work == 'picswap':
     costo_tarea = 1
