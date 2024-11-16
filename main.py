@@ -11,7 +11,6 @@ def start():
 #Vía Path
 @app.get("/getData/{aplicacion}")
 def getData(aplicacion: str):
-    print("La app que recibí es: ", aplicacion)
     data = funciones.getData(aplicacion)    
     return data
 
@@ -45,7 +44,6 @@ def authorize(tokens: int, work: str):
 @app.get("/authorizeQ/")
 def authorize(tokens: int, work: str = "picswap"):
     autorizacion = funciones.authorize(tokens,work) 
-    #print("Tipo de resultado:", type(autorizacion))
     return autorizacion
 
 

@@ -33,14 +33,13 @@ def obtenDireccionArchivo(archivo):
 
 
 def obtenContenidoArchivo(sftp, dir_data): 
-    print("Estoy dentro de obtenContenido...")
-
+    
     with sftp.open(dir_data, 'rb') as archivo:
       # Leer el contenido del archivo como bytes
-      print("Pude entrar al archivo...")
+      
       contenido = archivo.read()
-      print("Imprimiendo contenido: ", contenido)
-      print("El tipo de contenido obtenido es: ", type(contenido))
+      # print("Imprimiendo contenido: ", contenido)
+      # print("El tipo de contenido obtenido es: ", type(contenido))
 
       #Decodificar pq viene codificado del server (codificado en bytes) no encriptado.      
       texto = contenido.decode('utf-8')
@@ -88,7 +87,7 @@ def autoriza(tokens, work):
 
   #Ahora evaluaremos si se tiene el suficiente crédito como para ejecutar la tarea.
   if tokens >= costo_tarea:
-    print("Tarea autorizada...")
+    #print("Tarea autorizada...")
     result = True
   else:
      print("Tarea no autorizada, no tienes suficientes tokens...")

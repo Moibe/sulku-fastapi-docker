@@ -15,9 +15,7 @@ def getData(aplicacion):
         
     #dir_data = avaimet.obtenDireccionArchivo() #Comenté éste pq me estaría ahorrando ésta función así:
     dir_data = nodes.users_data + aplicacion + globales.data
-
-    print("Ésto es dir data...", dir_data)
-    
+   
     #Obtiene el json con los datos.
     data = avaimet.obtenContenidoArchivo(sftpListo, dir_data)    
     #Cierra la conexión.    
@@ -107,7 +105,7 @@ def getUserNovelty(userfile, aplicacion):
             break
 
     if tupla_encontrada:
-        print("Usuario encontrado:", tupla_encontrada)
+        #print("Usuario encontrado:", tupla_encontrada)
         novelty = tupla_encontrada[1]
         return novelty
     else:
