@@ -8,25 +8,16 @@ import nycklar.nodes as nodes
 
 def conecta():
 
-  print("Estoy en aivamet.conecta")
   #Digital Signature.
   ssh = paramiko.SSHClient()
-  print("El paramiko ssh es:")
-  print(ssh)
-
   ssh.load_host_keys("nycklar/itrst")
-
-  print("Load host keys loadedas...")
 
   #Ahora obtendremos nuestra secret key para poder entrar a ese servidor.
   project_dir = os.getcwd()
   
   #Ruta de go.
   key_filename = os.path.join(project_dir, "nycklar", "go")
-
-   
   ssh.connect(nodes.realm, username=nodes.master, key_filename=key_filename)
-
   sftp = ssh.open_sftp()
 
   return ssh, sftp
@@ -53,20 +44,16 @@ def obtenContenidoArchivo(sftp, dir_data):
 
       #Decodificar pq viene codificado del server (codificado en bytes) no encriptado.      
       texto = contenido.decode('utf-8')
-      print(texto)
-      print("El tipo de contenido obtenido es: ", type(texto))
       
       return texto
 
-def obtenCaja(userfile):
+def obtenCaja(userfile, env):
 
   #Codifica y descomprime el string para obtener un user.
   username = tools.decompileUser(userfile)
 
   # Ruta del archivo remoto
-  ruta_remota = nodes.avaimentekijä
-  #avaimentekijä es el repositorio de llaves sulkuusers.  
-
+  ruta_remota = nodes.users_credits + env + "/"
   caja = ruta_remota + username + ".txt"
     
   return caja

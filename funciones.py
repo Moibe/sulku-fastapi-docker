@@ -27,11 +27,11 @@ def getData(aplicacion):
     
     return data
 
-def getTokens(userfile):
+def getTokens(userfile, env):
     #Genera conexión inicial.       
     sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados los tokens.
-    caja = avaimet.obtenCaja(userfile)
+    caja = avaimet.obtenCaja(userfile, env)
     #Obtiene los tokens que hay en esa caja.
     tokens = avaimet.obtenTokens(sftpListo, caja)
     #Cierra la conexión.    

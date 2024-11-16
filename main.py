@@ -23,15 +23,15 @@ def getData(aplicacion: str):
 
 ## GET TOKENS ##
 #Vía Path
-@app.get("/getTokens/{userfile}")
-def getTokens(userfile: str):
-    tokens = funciones.getTokens(userfile)
+@app.get("/getTokens/{userfile}/{env}")
+def getTokens(userfile: str, env: str):
+    tokens = funciones.getTokens(userfile, env)
     return tokens
 
 #Vía Query 
 @app.get("/getTokensQ/")
-def getTokens(userfile: str = "gAAAAABmEZA4SLBC2YczouOrjIEi9WNCNGOIvyUcqBUnzxNsftXTdy54KaX9x8mAjFkABSI6FJrdZDQKk_5lpJOgJoMChxlniw=="):
-    tokens = funciones.getTokens(userfile)
+def getTokens(userfile: str = "gAAAAABmEZA4SLBC2YczouOrjIEi9WNCNGOIvyUcqBUnzxNsftXTdy54KaX9x8mAjFkABSI6FJrdZDQKk_5lpJOgJoMChxlniw==", env: str = "dev"):
+    tokens = funciones.getTokens(userfile, env)
     return tokens
 
 ## AUTHORIZE WORK ##
