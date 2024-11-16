@@ -64,15 +64,13 @@ def debitTokens(userfile: str, work: str = "picswap", env: str = "dev"):
 
 ## GET USER Novelty ##
 #Vía Parámeters
-@app.get("/getUserNovelty/{userfile}")
-def getUserNovelty(userfile: str):
-    novelty = funciones.getUserNovelty(userfile) 
-    #print("Tipo de resultado:", type(novelty))
+@app.get("/getUserNovelty/{userfile}/{aplicacion}")
+def getUserNovelty(userfile: str, aplicacion: str):
+    novelty = funciones.getUserNovelty(userfile, aplicacion) 
     return novelty
 
 #Vía Query
 @app.get("/getUserNovelty/")
-def getUserNovelty(userfile: str):
-    novelty = funciones.getUserNovelty(userfile) 
-    #print("Tipo de resultado:", type(novelty))
+def getUserNovelty(userfile: str, aplicacion: str):
+    novelty = funciones.getUserNovelty(userfile, aplicacion) 
     return novelty

@@ -10,9 +10,7 @@ import nycklar.nodes as nodes
 #Y las herramientas adicionales están en tools.
 
 def getData(aplicacion):
-    #Genera conexión inicial.
-    print("Estoy en getData...")
-
+    
     sshListo, sftpListo = avaimet.conecta()
         
     #dir_data = avaimet.obtenDireccionArchivo() #Comenté éste pq me estaría ahorrando ésta función así:
@@ -83,14 +81,15 @@ def debitTokens(userfile, work, env):
 
 
 
-def getUserNovelty(userfile):
+def getUserNovelty(userfile, aplicacion):
 
     usuario = tools.decompileUser(userfile)
     
     #Genera conexión inicial (general para cualquier función.)  
     sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados las flags de novelty.
-    dir_data = avaimet.obtenDireccionArchivo(globales.novelty)
+    #dir_data = avaimet.obtenDireccionArchivo(globales.novelty)
+    dir_data = nodes.users_data + aplicacion + globales.novelty
     #Obtiene el json con los datos.
     data = avaimet.obtenContenidoArchivo(sftpListo, dir_data)
     
@@ -101,15 +100,16 @@ def getUserNovelty(userfile):
     avaimet.cierraConexion(sshListo, sftpListo)
     #Future, ¿se puede acaso que se cierre el contenido y que haga la conversión al mismo tiempo?    
 
+    #Repasa todas las tuplas
     for tupla in lista_tuplas:
         if tupla[0] == usuario:
             tupla_encontrada = tupla
             break
 
     if tupla_encontrada:
-        print("La tupla encontrada es:", tupla_encontrada)
+        print("Usuario encontrado:", tupla_encontrada)
         novelty = tupla_encontrada[1]
         return novelty
     else:
-        print("No se encontró ninguna tupla con el texto especificado.")
+        print("No se encontró ese usuario.")
         return "no user"
