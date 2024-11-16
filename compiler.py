@@ -1,4 +1,3 @@
-import time 
 import nycklar.nodes as nodes
 from cryptography.fernet import Fernet
 

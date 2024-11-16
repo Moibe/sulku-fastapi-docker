@@ -1,4 +1,3 @@
-import time
 import avaimet
 import gradio as gr
 

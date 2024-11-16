@@ -1,5 +1,4 @@
 import ast
-import time
 import tools
 import avaimet
 import globales
@@ -96,7 +95,7 @@ def getUserNovelty(userfile, aplicacion):
     tupla_encontrada = None  # Inicializamos una variable para almacenar la tupla encontrada
 
     avaimet.cierraConexion(sshListo, sftpListo)
-    #Future, ¿se puede acaso que se cierre el contenido y que haga la conversión al mismo tiempo?    
+    #Future, ¿se puede acaso que se cierre el contenido y que haga la conversión al mismo tiempo? (threads)   
 
     #Repasa todas las tuplas
     for tupla in lista_tuplas:
