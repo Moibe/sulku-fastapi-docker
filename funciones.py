@@ -10,10 +10,9 @@ import nycklar.nodes as nodes
 
 def getData(aplicacion):
     
-    sshListo, sftpListo = avaimet.conecta()
-        
+    sshListo, sftpListo = avaimet.conecta()        
     #dir_data = avaimet.obtenDireccionArchivo() #Comenté éste pq me estaría ahorrando ésta función así:
-    dir_data = nodes.users_data + aplicacion + globales.data
+    dir_data = nodes.users_data + aplicacion + globales.data    
    
     #Obtiene el json con los datos.
     data = avaimet.obtenContenidoArchivo(sftpListo, dir_data)    

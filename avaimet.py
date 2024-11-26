@@ -36,14 +36,11 @@ def obtenContenidoArchivo(sftp, dir_data):
     try:     
       with sftp.open(dir_data, 'rb') as archivo:               
         contenido = archivo.read()
-        # print("Imprimiendo contenido: ", contenido)
-        # print("El tipo de contenido obtenido es: ", type(contenido))
-        #Decodificar pq viene codificado del server (codificado en bytes) no encriptado.      
         texto = contenido.decode('utf-8')      
     except Exception as e:
         texto = f"Error al leer el archivo: {e}"
         print(texto)
-        return None    
+        return texto    
     return texto
 
 def obtenCaja(userfile, env):
