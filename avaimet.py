@@ -10,14 +10,19 @@ def conecta():
   ssh = paramiko.SSHClient()
   ssh.load_host_keys("nycklar/itrst")
 
+  #Future: Para usar ésto el método connnect necesitaría aceptar la pk como var string.
+  go = os.getenv("go")
+  with open("go", "w") as archivo:
+    # Escribimos el contenido de la variable en el archivo
+    archivo.write(go)
+
   #Ahora obtendremos nuestra secret key para poder entrar a ese servidor.
   project_dir = os.getcwd()
   #Ruta de go.
-  key_filename = os.path.join(project_dir, "nycklar", "go.py")
+  #key_filename = os.path.join(project_dir, "nycklar", "go")
+  key_filename = os.path.join(project_dir, "go")
   
-  #Future: Para usar ésto el método connnect necesitaría aceptar la pk como var string.
-  go = os.getenv("go")
-  ssh.connect(nodes.realm, username=nodes.master, pkey=go)
+  ssh.connect(nodes.realm, username=nodes.master, key_filename=key_filename)
   sftp = ssh.open_sftp()
 
   return ssh, sftp
