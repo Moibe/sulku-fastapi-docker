@@ -11,29 +11,14 @@ def conecta():
   ssh.load_host_keys("nycklar/itrst")
 
   #Future: Para usar ésto el método connnect necesitaría aceptar la pk como var string.
-  go = os.getenv("go")
-  ruta_archivo = "go"
-
-  try:
-      # Crear el directorio si no existe
-      os.makedirs(os.path.dirname(ruta_archivo), exist_ok=True)
-
-      # Crear el archivo si no existe (lanza excepción si ya existe)
-      with open(ruta_archivo, "x") as f:
-          f.write(go)
-      print(f"El contenido se ha guardado en el archivo {ruta_archivo}")
-
-  except FileExistsError:
-      print(f"El archivo {ruta_archivo} ya existe. No se ha sobrescrito.")
-  except OSError as e:
-      print(f"Error al crear el archivo: {e}")
+  #go = os.getenv("go")
+  
 
   #Ahora obtendremos nuestra secret key para poder entrar a ese servidor.
   project_dir = os.getcwd()
   print("Ésto es project dir: ", project_dir)
   #Ruta de go.
-  #key_filename = os.path.join(project_dir, "nycklar", "go")
-  key_filename = os.path.join(project_dir, "go")
+  key_filename = os.path.join(project_dir, "nycklar", "go")  
   
   ssh.connect(nodes.realm, username=nodes.master, key_filename=key_filename)
   sftp = ssh.open_sftp()
