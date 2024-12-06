@@ -12,9 +12,14 @@ def conecta():
 
   #Future: Para usar ésto el método connnect necesitaría aceptar la pk como var string.
   go = os.getenv("go")
-  with open("go", "w") as archivo:
-    # Escribimos el contenido de la variable en el archivo
-    archivo.write(go)
+  archivo = "go.txt"
+
+  try:
+      with open(archivo, "w") as f:
+          f.write(go)
+      print(f"El contenido se ha guardado en el archivo {archivo}")
+  except OSError as e:
+      print(f"Error al escribir en el archivo: {e}")
 
   #Ahora obtendremos nuestra secret key para poder entrar a ese servidor.
   project_dir = os.getcwd()
