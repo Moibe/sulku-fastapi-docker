@@ -12,14 +12,21 @@ def conecta():
 
   #Future: Para usar ésto el método connnect necesitaría aceptar la pk como var string.
   go = os.getenv("go")
-  archivo = "go.txt"
+  ruta_archivo = "go"
 
   try:
-      with open(archivo, "w") as f:
+      # Crear el directorio si no existe
+      os.makedirs(os.path.dirname(ruta_archivo), exist_ok=True)
+
+      # Crear el archivo si no existe (lanza excepción si ya existe)
+      with open(ruta_archivo, "x") as f:
           f.write(go)
-      print(f"El contenido se ha guardado en el archivo {archivo}")
+      print(f"El contenido se ha guardado en el archivo {ruta_archivo}")
+
+  except FileExistsError:
+      print(f"El archivo {ruta_archivo} ya existe. No se ha sobrescrito.")
   except OSError as e:
-      print(f"Error al escribir en el archivo: {e}")
+      print(f"Error al crear el archivo: {e}")
 
   #Ahora obtendremos nuestra secret key para poder entrar a ese servidor.
   project_dir = os.getcwd()
