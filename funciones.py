@@ -35,7 +35,7 @@ def getTokens(userfile, env):
 
 def authorize(tokens, work):
 
-    print(f"Task received : {work}, type: {type(work)} ...")
+    #print(f"Task received : {work}, type: {type(work)} ...")
 
     ##Ésta sección se reutilizará si en lugar de pasar el parámetro token, se pasa el parámetro userfile.
     #Actualmente no lo pedimos porque es el developer el que pone la cantidad de tokens que el usuario tiene para...
@@ -79,26 +79,20 @@ def debitTokens(userfile, work, env):
 
 def getUserNovelty(userfile, aplicacion):
 
-    print("Estoy en getUserNovelty")
-
+    #print("Estoy en getUserNovelty")
     usuario = tools.decompileUser(userfile)
-    
-    print("El usuario es...", usuario)
+    #print("El usuario es...", usuario)
 
     #Genera conexión inicial (general para cualquier función.)  
     sshListo, sftpListo = avaimet.conecta()
 
-    print("Me logré conectar!!!!")
     #Obtiene la caja donde está guardados las flags de novelty.
     #dir_data = avaimet.obtenDireccionArchivo(globales.novelty)
     dir_data = nodes.users_data + aplicacion + globales.novelty
 
-    print("Esto es dir data...", dir_data)
     #Obtiene el json con los datos.
     data = avaimet.obtenContenidoArchivo(sftpListo, dir_data)
-
-    print("Ésto es data...", data)
-    
+   
     # Convertir el string a una lista de tuplas utilizando ast.literal_eval()
     lista_tuplas = ast.literal_eval(data)
     tupla_encontrada = None  # Inicializamos una variable para almacenar la tupla encontrada
