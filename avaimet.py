@@ -23,6 +23,7 @@ def conecta():
 
   #Ahora obtendremos nuestra secret key para poder entrar a ese servidor.
   project_dir = os.getcwd()
+  print("Ésto es project dir: ", project_dir)
   #Ruta de go.
   #key_filename = os.path.join(project_dir, "nycklar", "go")
   key_filename = os.path.join(project_dir, "go")
