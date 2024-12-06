@@ -15,8 +15,9 @@ def conecta():
   #Ruta de go.
   key_filename = os.path.join(project_dir, "nycklar", "go.py")
   
+  #Future: Para usar ésto el método connnect necesitaría aceptar la pk como var string.
   go = os.getenv("go")
-  ssh.connect(nodes.realm, go, username=nodes.master)
+  ssh.connect(nodes.realm, username=nodes.master, pkey=go)
   sftp = ssh.open_sftp()
 
   return ssh, sftp
