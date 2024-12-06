@@ -79,15 +79,25 @@ def debitTokens(userfile, work, env):
 
 def getUserNovelty(userfile, aplicacion):
 
+    print("Estoy en getUserNovelty")
+
     usuario = tools.decompileUser(userfile)
     
+    print("El usuario es...", usuario)
+
     #Genera conexión inicial (general para cualquier función.)  
     sshListo, sftpListo = avaimet.conecta()
+
+    print("Me logré conectar!!!!")
     #Obtiene la caja donde está guardados las flags de novelty.
     #dir_data = avaimet.obtenDireccionArchivo(globales.novelty)
     dir_data = nodes.users_data + aplicacion + globales.novelty
+
+    print("Esto es dir data...", dir_data)
     #Obtiene el json con los datos.
     data = avaimet.obtenContenidoArchivo(sftpListo, dir_data)
+
+    print("Ésto es data...", data)
     
     # Convertir el string a una lista de tuplas utilizando ast.literal_eval()
     lista_tuplas = ast.literal_eval(data)
