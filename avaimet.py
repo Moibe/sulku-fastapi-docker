@@ -11,12 +11,12 @@ def conecta():
   ssh.load_host_keys("nycklar/itrst")
 
   #Ahora obtendremos nuestra secret key para poder entrar a ese servidor.
-  #project_dir = os.getcwd()
+  project_dir = os.getcwd()
   #Ruta de go.
-  #key_filename = os.path.join(project_dir, "nycklar", "go")
+  key_filename = os.path.join(project_dir, "nycklar", "go.py")
   
-  go = os.getenv("go")
-  ssh.connect(nodes.realm, username=nodes.master, pkey=go)
+  #go = os.getenv("go")
+  ssh.connect(nodes.realm, username=nodes.master, key_filename=key_filename)
   sftp = ssh.open_sftp()
 
   return ssh, sftp
