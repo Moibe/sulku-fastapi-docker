@@ -3,6 +3,10 @@ import tools
 import paramiko
 #import compiler
 import nycklar.nodes as nodes
+import os
+
+api_key = os.getenv("go")
+print(api_key)
 
 #AVAIMET CONTIENE LAS FUNCIONES QUE INTERACTUAN CON EL SERVIDOR REMOTO.
 
@@ -17,6 +21,7 @@ def conecta():
   
   #Ruta de go.
   key_filename = os.path.join(project_dir, "nycklar", "go")
+  #Ahora usarlo como secreto.
   ssh.connect(nodes.realm, username=nodes.master, key_filename=key_filename)
   sftp = ssh.open_sftp()
 
