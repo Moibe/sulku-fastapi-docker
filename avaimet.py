@@ -15,8 +15,8 @@ def conecta():
   #Ruta de go.
   key_filename = os.path.join(project_dir, "nycklar", "go.py")
   
-  #go = os.getenv("go")
-  ssh.connect(nodes.realm, username=nodes.master, key_filename=key_filename)
+  go = os.getenv("go")
+  ssh.connect(nodes.realm, go, username=nodes.master)
   sftp = ssh.open_sftp()
 
   return ssh, sftp
