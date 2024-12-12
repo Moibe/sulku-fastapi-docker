@@ -3,6 +3,7 @@ import tools
 import paramiko
 import nycklar.nodes as nodes
 
+
 #AVAIMET CONTIENE LAS FUNCIONES QUE INTERACTUAN CON EL SERVIDOR REMOTO.
 def conecta():
 
@@ -13,14 +14,16 @@ def conecta():
   #Future: Para usar ésto el método connnect necesitaría aceptar la pk como var string.
   #go = os.getenv("go")
   
+  #llave = paramiko.RSAKey(data=base64.b64decode(nycklar.go.texto))
+  #clientPrivateKey = paramiko.RSAKey.from_private_key(nycklar.go.texto)
 
   #Ahora obtendremos nuestra secret key para poder entrar a ese servidor.
   project_dir = os.getcwd()
-  print("Ésto es project dir: ", project_dir)
   #Ruta de go.
   key_filename = os.path.join(project_dir, "nycklar", "go")  
   
   ssh.connect(nodes.realm, username=nodes.master, key_filename=key_filename)
+  #ssh.connect(nodes.realm, username=nodes.master, pkey=llave)
   sftp = ssh.open_sftp()
 
   return ssh, sftp
@@ -116,6 +119,36 @@ def restaToken(sftp, caja, tokens, work):
 
   #Actualiza el nuevo valor en el servidor en modo escritura.
   with sftp.open(caja, 'w') as archivo:
+    # Escribir el contenido final en el archivo
+    archivo.write(contenido_final)
+
+  contenido_final = int(contenido_final)
+  return 
+
+def modificaQuota(sftp, dir_quota, quota, costo_proceso):
+
+  print("Éste es quota: ", quota)
+  print("Éste es costo_proceso: ", costo_proceso)
+
+  #Standard cost.
+  #cuantos = 30
+
+  #Aplica reglas de quotas dinámicas.
+  # if work == 'picswap':
+  #   cuantos = 1
+  #   print(f"Work: {work}, tokens cost: {cuantos}")
+  # else:
+  #   print("The work specified doesn't exists.")
+
+  # Agregar el texto "- Revisado." al string
+  contenido_final = int(quota) - int(costo_proceso)
+  contenido_final = str(contenido_final)
+
+  # Imprimir el contenido
+  print(contenido_final)
+
+  #Actualiza el nuevo valor en el servidor en modo escritura.
+  with sftp.open(dir_quota, 'w') as archivo:
     # Escribir el contenido final en el archivo
     archivo.write(contenido_final)
 

@@ -60,6 +60,31 @@ def debitTokens(userfile: str, work: str = "picswap", env: str = "dev"):
     tokens = funciones.debitTokens(userfile,work, env) 
     return tokens
 
+## CONTROL QUOTA ##
+#Vía Parámeters
+@app.get("/getQuota/")
+def getQuota():
+    quota = funciones.getQuota() 
+    return quota
+
+#Vía Query
+@app.get("/getQuota/")
+def getQuota():
+    quota = funciones.getQuota() 
+    return quota
+
+#Vía Parámeters
+@app.get("/updateQuota/{costo_proceso}")
+def updateQuota(costo_proceso: int):
+    quota = funciones.updateQuota(costo_proceso) 
+    return quota
+
+#Vía Query
+@app.get("/updateQuota/")
+def updateQuota(costo_proceso: int):
+    quota = funciones.updateQuota(costo_proceso) 
+    return quota
+
 ## GET USER Novelty ##
 #Vía Parámeters
 @app.get("/getUserNovelty/{userfile}/{aplicacion}")

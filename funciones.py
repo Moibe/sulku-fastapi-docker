@@ -75,13 +75,48 @@ def debitTokens(userfile, work, env):
 
     return resultado_debitado
 
+def getQuota():
+
+    print(f"Estoy en getQuota...")
+
+    #Genera conexión inicial.
+    sshListo, sftpListo = avaimet.conecta()
+    dir_quota = nodes.quota + globales.quota
+    print("Ésto es dir quota: ", dir_quota)
+
+    #Obtiene el json con los datos.
+    data = avaimet.obtenContenidoArchivo(sftpListo, dir_quota)
+    print("Y ésto es data: ", data)
+    #Cierra la conexión.  
+    avaimet.cierraConexion(sshListo, sftpListo)
+
+    return data
+
+def updateQuota(costo_proceso):
+
+    print(f"Estoy en updateQuota...")
+
+    #Genera conexión inicial.
+    sshListo, sftpListo = avaimet.conecta()
+    dir_quota = nodes.quota + globales.quota
+    print("Ésto es dir quota: ", dir_quota)
+
+    #Obtiene el json con los datos.
+    quota_actual = avaimet.obtenContenidoArchivo(sftpListo, dir_quota)
+    print("Y ésto es data: ", quota_actual)
+
+    #Aplica las reglas de ésta app para debitar lo correspondiente.
+    quota_modificada = avaimet.modificaQuota(sftpListo, dir_quota, quota_actual, costo_proceso)
+    #Cierra la conexión.  
+    avaimet.cierraConexion(sshListo, sftpListo)
+
+    return quota_modificada
+
 
 
 def getUserNovelty(userfile, aplicacion):
 
-    #print("Estoy en getUserNovelty")
     usuario = tools.decompileUser(userfile)
-    #print("El usuario es...", usuario)
 
     #Genera conexión inicial (general para cualquier función.)  
     sshListo, sftpListo = avaimet.conecta()
