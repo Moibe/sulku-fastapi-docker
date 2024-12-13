@@ -59,9 +59,6 @@ def authorize(tokens, work):
     return result
 
 def debitTokens(userfile, work, env):
-
-    print(f"Task received : {work}, type: {type(work)} ...")
-
     #Genera conexión inicial.
     sshListo, sftpListo = avaimet.conecta()
     #Obtiene la caja donde está guardados los tokens.
@@ -72,21 +69,16 @@ def debitTokens(userfile, work, env):
     resultado_debitado = avaimet.restaToken(sftpListo, caja, tokens, work)
     #Cierra la conexión.  
     avaimet.cierraConexion(sshListo, sftpListo)
-
     return resultado_debitado
 
 def getQuota():
-
     #Genera conexión inicial.
     sshListo, sftpListo = avaimet.conecta()
-    dir_quota = nodes.quota + globales.quota
-    
+    dir_quota = nodes.quota + globales.quota    
     #Obtiene el json con los datos.
-    data = avaimet.obtenContenidoArchivo(sftpListo, dir_quota)
-    
+    data = avaimet.obtenContenidoArchivo(sftpListo, dir_quota)    
     #Cierra la conexión.  
     avaimet.cierraConexion(sshListo, sftpListo)
-
     return int(data)
 
 def updateQuota(costo_proceso):

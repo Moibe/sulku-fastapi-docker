@@ -51,7 +51,7 @@ def authorize(tokens: int, work: str = "picswap"):
 #Vía Parámeters
 @app.get("/debitTokens/{userfile}/{work}/{env}")
 def debitTokens(userfile: str, work: str, env: str):
-    tokens = funciones.debitTokens(userfile,work, env) 
+    tokens = funciones.debitTokens(userfile,work, env)
     return tokens
 
 #Vía Query

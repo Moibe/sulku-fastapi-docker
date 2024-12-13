@@ -123,7 +123,7 @@ def restaToken(sftp, caja, tokens, work):
     archivo.write(contenido_final)
 
   contenido_final = int(contenido_final)
-  return 
+  return contenido_final
 
 def modificaQuota(sftp, dir_quota, quota, costo_proceso):
 
